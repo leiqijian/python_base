@@ -31,3 +31,61 @@ def service(Fruit):
 
 # 调用公共方法
 service(Orange())
+
+print("-------------------")
+
+
+class Animal():
+    def speak(self):
+        pass
+
+class Dog(Animal):
+     def speak(self):
+         print('wangwangwang')
+
+
+class Cat(Animal):
+    def speak(self):
+        print('miaomiaomiao')
+
+class Person(Animal):
+    def speak(self):
+        print('hello')
+
+class Car():
+    def speak(self):
+        print('dididi')
+
+class Bus():
+    def __init__(self, fn):
+        self.fn = fn
+
+
+def make_noice(a : Animal):
+    a.speak()
+
+# make_noice(Dog())
+# make_noice(Cat())
+# make_noice(Person())
+# make_noice(Car())  #python中的伪多态，只要传入的对象有speak方法，就可以调用
+
+# def speak():
+#     pass
+# make_noice(Bus(speak()))
+
+print("---------*******----------")
+
+def a():
+    print("Bus is making noise!")
+
+class Bus():
+    def __init__(self, fn):
+        self.speak = fn
+        print(f"aaa{self.speak}aaa")
+        print(f"bbb{self.speak()}bbb")
+
+def make_noice(a : Animal):
+    a.speak()
+
+bus = Bus(a)
+make_noice(bus)   #Bus is making noise!
