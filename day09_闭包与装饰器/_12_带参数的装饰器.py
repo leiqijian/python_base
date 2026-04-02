@@ -1,21 +1,55 @@
-def loggin(flag):
-    def decorator(fn):
-        def inner(sum1, sum2):
-            if flag == "+":
-                print("正在做加法运算")
-            elif flag == "-":
-                print("正在做减法运算")
-            result = fn(sum1, sum2)
-            return result
+'''
+装饰器里的参数只能有一个，
+'''
+def log(flag1):
+    def loggin(flag):
+        def decorator(fn):
+            def inner(sum1, sum2):
+                if flag == "+":
+                    print("正在做加法运算")
+                elif flag == "-":
+                    print("正在做减法运算")
+                result = fn(sum1, sum2)
+                return result
 
-        return inner
-    return decorator
+            return inner
 
-@loggin("+")
+        return decorator
+    return loggin
+# def loggin(flag):
+#     def decorator(fn):
+#         def inner(sum1, sum2):
+#             if flag == "+":
+#                 print("正在做加法运算")
+#             elif flag == "-":
+#                 print("正在做减法运算")
+#             result = fn(sum1, sum2)
+#             return result
+#
+#         return inner
+#     return decorator
+
+'''
+调用了loggin函数，把"decorator"返回，decorator增强了add函数，那+是怎么传递到decorator呢？
+1. 装饰器先传参，最后再传函数
+2. 多层装饰器的情况
+'''
+# @loggin("+")
+# def add(a, b):
+#     return a + b
+#
+# @loggin("-")
+# def subtract(a, b):
+#     return a - b
+#
+# result = add(1, 2)
+# result = subtract(1, 2)
+
+@log("+")("+")
 def add(a, b):
     return a + b
 
-@loggin("-")
+@log("-")("-")
 def subtract(a, b):
     return a - b
 

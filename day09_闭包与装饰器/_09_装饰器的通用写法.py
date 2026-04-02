@@ -1,10 +1,25 @@
-import copy
+'''
+通用装饰器：① 有嵌套 ② 有引用 ③ 有返回 ④ 有不定长参数 ⑤ 有return返回值
+'''
+def logging(fn):
+    def inner(*args, **kwargs):  #*args收集一个个位置参数变成元组， **kwargs收集一个个关键字参数变成字典
+        # 输出装饰器功能
+        print('-- 正在努力计算 --')
+        # 调用fn函数
+        return fn(*args, **kwargs)   # *args展开元组变成一个个位置参数，  **kwargs展开字典变成一个个关键字参数
+    return inner
 
-tuple1 = (1,2,3, [4,5])
 
-tuple2 = copy.copy(tuple1)
-print(id(tuple1)) #1698365083776
-print(id(tuple2)) #1698365083776
+@logging
+def sum_num1(a, b):
+    result = a + b
+    return result
 
-print(id(tuple1[3])) #1698364865408
-print(id(tuple2[3])) #1698364865408
+print(sum_num1(20, 10))
+
+@logging
+def sum_num2(a, b, c):
+    result = a + b + c
+    return result
+
+print(sum_num2(10, 20, 30))
