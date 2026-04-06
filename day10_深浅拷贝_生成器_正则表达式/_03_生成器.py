@@ -1,17 +1,18 @@
 '''
 使用类似推到式的语法，创建一个生成器，比如的到0，2，4，6，8
 '''
+import sys
 
-#传统做法
-list1 = []
-for i in range(0, 5):
-    print(i)
-    list1.append(i * 2)
-
-print(list1)
-
-gen2 = (i * 2 for i in range(0, 5))
-print(gen2)
+# #传统做法
+# list1 = []
+# for i in range(0, 5):
+#     print(i)
+#     list1.append(i * 2)
+#
+# print(list1)
+#
+# gen2 = (i * 2 for i in range(0, 5))
+# print(gen2)
 #<generator object <genexpr> at 0x00000295EBED8EE0>
 # 几乎不占用内存，只是提前生成了一个用于生成0，2，4，6，8的规则，后期按需生成
 
@@ -21,6 +22,17 @@ print(gen2)
 # print(next(gen2))
 # print(next(gen2))
 # print(next(gen2))
+#
+# for i in gen2:
+#     print(i)
 
-for i in gen2:
-    print(i)
+
+result = (item for item in range(10_0000)) #元组没有生成器，这种写法是用规则生成器
+result2 = [item for item in range(10_0000)] #元组没有生成器，这种写法是用规则生成器
+# print(result, sys.getsizeof(result))
+print(result2, sys.getsizeof(result2))
+# print(result)
+# print(type(result))
+
+# for item in result:
+#     print(item)
