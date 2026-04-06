@@ -1,0 +1,1 @@
+# 1 需求：在列表中["apple", "banana", "orange", "pear"]，匹配apple和pearfruit = ["apple", "banana", "orange", "pear"]# 获取字符串数据for value in fruit:    result = re.match("apple|pear", value)    # 判断匹配是否成功    if result:        info = result.group()        print("我想吃的水果:",value)    else:        print(f"这个不是我想吃的水果{value}")
